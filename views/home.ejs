@@ -1,0 +1,42 @@
+<head>	
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+
+<body>
+    <div style="width:100%">
+        <h2> Home Page </h2>
+        <form action="/notes" method="POST" style="display: inline;">
+            <input style="width:300px; margin-left:20px;" type="text" id="query" name="query" placeholder="Search...">
+            </input>
+            <button>Search</button>
+        </form>
+        <a style="margin-left:20px" href="/notes">All Notes</a>
+        <% if(isAuthenticated){ %>
+            <a style="margin-left:20px" href="/mynotes">My Notes</a>
+        <% } %>
+        <% if(!isAuthenticated){ %>
+            <a style="margin-left:35%" href="/login">Login</a>
+	    <a style="margin-left:20px" href="/register">Register</a>
+           <a style="margin-left:20px" href="/logout">Logout</a>
+	 <% } else{ %>  
+           <a style="margin-left:35%" href="/logout">Logout</a>
+	<% } %>
+    </div>
+    
+    <section class="add" style="margin-top:40px;">
+        <h2 style="width:50%; margin-left:38%; color:black;"> Share Notes </h2>
+
+        <form action="/note/add" method="POST">
+            <input style="width:50%; margin-left:20%" type="text" id="title" name="title" placeholder="Note Title">
+            </input>
+            <br/>
+            <textarea style="width:50%; margin-left:20%; height:50%" type="text" id="content" name="content" placeholder="Content"></textarea>
+            <br/>
+            <select style="margin-left:20%; font-size: 20px; width: 200px;" name="status" id="noteStatus">
+                <option value="private">Private</option>
+                <option value="public">Public</option>
+              </select>
+            <button style="margin-left:34%; margin-top:10px; width: 100px;">Add</button>
+        </form>
+    </section>
+</body>

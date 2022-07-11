@@ -1,0 +1,37 @@
+<head>	
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+
+<body>
+    <div>
+        <h2> Notes </h2>
+        <a style="margin-left:50%" href="/">Home</a>
+        <% if(!isAuthenticated){ %>
+           <a style="margin-left:20px" href="/login">Login</a>
+           <a style="margin-left:20px" href="/register">Register</a>
+       <% } %>
+        <a style="margin-left:20px" href="/logout">Logout</a>
+    </div>
+    <section class="show" style="margin-top:40px">
+        <table class="table">
+            <tr>
+            <th style="width:75%">Title</th>
+            <th>Action</th>
+        </tr>
+        <% notes.forEach(function(note){ %>
+            <% if(userAuthenticated && userAuthenticated == note.owner){ %>
+                <tr> <td style="width:75%"> <a href="/<%=note._id%>" style="margin-left:20px"><%= note.title %></a> </td>    
+                    <td>
+                    <form style="width:30%; margin: 20px 0px 0px 10px; display:inline" action="/<%=note._id%>/edit"><button class="buttonAction" disabled>Edit</button></form>
+                    <% if(userAuthenticated && userAuthenticated == note.owner){ %>
+                        <form style="width:30%; margin: 20px 0px 0px 10px; display:inline" action="/<%=note._id%>/?_method=DELETE" method="POST"><button class="buttonAction">Delete</button></form>
+                    <% } else{ %>  
+                   <form style="width:30%; margin: 20px 0px 0px 10px; display:inline" action="/<%=note._id%>/?_method=DELETE" method="POST"><button class="buttonAction" disabled>Delete</button></form>
+                <% } %>
+                    </td>
+                    </tr>
+                    <% } %>
+        <% }) %>
+    </table>
+    </section>
+</body>
