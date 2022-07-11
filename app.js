@@ -182,6 +182,6 @@ app.delete("/:id",(req,res)=>{
     })
 })
 
-app.listen(3000, () => { console.log("Server has started!")});
+app.listen(process.env.PORT, () => { console.log("Server has started!")});
 
 module.exports = app
