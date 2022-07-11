@@ -11,7 +11,20 @@ const User                  =  require("./models/user.js");
 const Note                  =  require("./models/note.js");
 
 //Connection to database
-mongoose.connect("mongodb://localhost:27017/GithubGistDB");
+const username = "YuriAO";
+const password = "SJbjDFae6cSlycyZ";
+const cluster = "cluster0.vrh5e";
+const dbname = "GithubGistDB";
+mongoose.connect(
+  `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/${dbname}?retryWrites=true&w=majority`, 
+  {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+  }
+);
+
+//mongoose.connect("mongodb://localhost:27017/GithubGistDB");
 
 //Express-session to create and manage the sessions
 app.use(require("express-session")({
